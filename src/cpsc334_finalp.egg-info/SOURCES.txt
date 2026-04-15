@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+src/cpsc334_finalp.egg-info/PKG-INFO
+src/cpsc334_finalp.egg-info/SOURCES.txt
+src/cpsc334_finalp.egg-info/dependency_links.txt
+src/cpsc334_finalp.egg-info/requires.txt
+src/cpsc334_finalp.egg-info/top_level.txt
+src/library/__init__.py
+src/library/webscraper/__init__.py
+src/library/webscraper/webscraper.py

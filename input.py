@@ -1,3 +1,10 @@
+
+# defining keyword input format:
+    # plain text search string
+    # 2- 256 characters and not empty
+    # limits: 1-200 results, valid year range
+
+
 import re
 import argparse
 from dataclasses import dataclass, field
@@ -153,8 +160,6 @@ def parse_cli_args() -> SearchInput:
         year_start=args.start,
         year_end=args.end,
     )
- 
-
 
 
 

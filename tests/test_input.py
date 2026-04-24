@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import pytest
-from input import parse_input, SearchInput
+from library.search_input.search_input import parse_input, SearchInput
 
 def test_basic_query():
     result = parse_input("child development psychology")

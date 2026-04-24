@@ -25,6 +25,11 @@ class PaperFinder:
             if keyword_count != index + 1:
                 target_url += "+"
 
+        if search.year_start:
+            target_url += "&as_ylo=" + str(search.year_start)
+        if search.year_end:
+            target_url += "&as_yhi=" + str(search.year_end)
+
         return target_url
 
     def search(self, search : SearchInput) -> dict:

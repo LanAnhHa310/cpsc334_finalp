@@ -48,3 +48,21 @@ def test_url_creation_three_keywords() -> None:
     search = SearchInput(query="this is a")
     success = pf.create_url(search) == "https://scholar.google.com/scholar?q=this+is+a"
     assert success == True
+
+def test_url_creation_start_year() -> None:
+    pf = PaperFinder()
+    search = SearchInput(query="Hello, World!", year_start=2017)
+    success = pf.create_url(search) == "https://scholar.google.com/scholar?q=Hello+World&as_ylo=2017"
+    assert success == True
+
+def test_url_creation_end_year() -> None:
+    pf = PaperFinder()
+    search = SearchInput(query="Hello, World!", year_end=2022)
+    success = pf.create_url(search) == "https://scholar.google.com/scholar?q=Hello+World&as_yhi=2022"
+    assert success == True
+
+def test_url_creation_start_year_and_end_year() -> None:
+    pf = PaperFinder()
+    search = SearchInput(query="Hello, World!", year_start=2017, year_end=2022)
+    success = pf.create_url(search) == "https://scholar.google.com/scholar?q=Hello+World&as_ylo=2017&as_yhi=2022"
+    assert success == True

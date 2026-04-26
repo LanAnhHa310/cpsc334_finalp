@@ -1,6 +1,15 @@
 from bs4 import BeautifulSoup
 import requests
 
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
 ## Basic Webscraper class. Used to grab HTML data
 ## from specified websites.
 class Webscraper:
@@ -12,7 +21,7 @@ class Webscraper:
     ## Returns true on successful load.
     def load_url(self, url : str) -> bool:
         try:
-            response = requests.get(url)
+            response = requests.get(url, headers=HEADERS)
         except:
             return False
 

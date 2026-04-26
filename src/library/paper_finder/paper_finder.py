@@ -32,7 +32,38 @@ class PaperFinder:
 
         return target_url
 
-    def search(self, search : SearchInput) -> dict:
+    ## DO NOT Automate testing this - scholar will detect & block us
+    def search(self, search : SearchInput) -> list[dict]:
+        search_results : list[dict] = []
+        
         target_url = self.create_url(search)
-        self.webscraper.load_url()
-        pass
+        status = self.webscraper.load_url(target_url)
+        if status != True:
+            print("Error pulling page HTML...")
+            return search_results
+        status = self.webscraper.initialize_soup()
+        if status != True:
+            print("Error creating soup...")
+            return search_results
+        soup = self.webscraper.soup
+
+        # Each result is in a div with class "gs_r gs_or gs_scl"
+        results = soup.find_all("div", class_="gs_r")
+
+        for result in results:
+            # Title and link are in the h3.gs_rt anchor tag
+            title_tag = result.find("h3", class_="gs_rt")
+            if title_tag:
+                link_tag = title_tag.find("a")
+                if link_tag:
+                    search_results.append(
+                        {
+                            "title": link_tag.get_text(),
+                            "link": link_tag.get("href"),
+                            "year" : None,
+                            "pdf_link" : None,
+                            "authors" : None
+                        }
+                    )
+
+        return search_results

@@ -17,3 +17,8 @@ def make_output_folder(query: str) -> str:
     folder = os.path.join("output", "papers", sanitize_title(query))  # build folder path
     os.makedirs(folder, exist_ok=True)
     return folder 
+
+def make_results_folder() -> str:
+    folder = os.path.join("output", "results")
+    os.makedirs(folder, exist_ok=True)
+    return folder

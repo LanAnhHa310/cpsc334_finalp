@@ -50,12 +50,11 @@ def test_to_csv_success():
         "url": None, 
         "pdf_link": None
     }])
-    assert p.to_csv("test_output.csv") == True
-    assert os.path.exists("test_output.csv")
-    os.remove("test_output.csv")
+    assert p.to_csv("deep learning") == True
+    assert os.path.exists(os.path.join("output", "results", "deep_learning.csv"))
 
 def test_to_csv_empty():
     p = Processor()
-    assert p.to_csv("test_output.csv") == False
+    assert p.to_csv("deep learning") == False
 
     

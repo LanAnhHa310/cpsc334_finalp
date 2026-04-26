@@ -1,5 +1,6 @@
 # Process class: for processing and cleaning data after downloading
 # List of scraped papers results
+import csv
 
 class Processor:
     def __init__(self):
@@ -30,3 +31,17 @@ class Processor:
         dupes = self.find_duplicates()
         self.papers = [p for p in self.papers if p not in dupes]
         return self.papers
+    
+    # export to csv files
+    def to_csv(self, filepath: str) -> bool:
+        if not self.papers:
+            return False
+
+        fields = ["title", "authors", "year", "url", "pdf_link"]
+
+        with open(filepath, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
+            writer.writeheader() 
+            writer.writerows(self.papers)
+        return True
+

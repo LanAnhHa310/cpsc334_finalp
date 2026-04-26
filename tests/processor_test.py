@@ -19,12 +19,23 @@ def test_find_duplicates():
     assert len(dupes) == 1
     assert dupes[0]["title"] == "deep learning"
 
-def find_duplicates_none():
+def test_find_duplicates_none():
     p = Processor()
-    p.load_papers = ([{"title": "Paper a"}, {"title": "Paper b"}])
+    p.load_papers ([{"title": "Paper a"}, {"title": "Paper b"}])
     assert p.find_duplicates() == []
 
-def find_duplicates_empty():
+def test_find_duplicates_empty():
     p = Processor()
     p.load_papers([])
     assert p.find_duplicates() == []
+
+def test_remove_duplicates():
+    p = Processor()
+    p.load_papers([
+        {"title": "Deep Learning"},
+        {"title": "machine learning"},
+        {"title": "deep learning"} # duplicate   
+    ])
+    result = p.remove_duplicates()
+    assert len(result) == 2
+    assert len(p.papers) == 2 #confirm the update is in place

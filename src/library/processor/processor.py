@@ -24,3 +24,9 @@ class Processor:
             else:
                 seen[title] = paper
         return duplicates
+    
+    # remove the duplicated paper (case-insenstive)
+    def remove_duplicates(self) -> list:
+        dupes = self.find_duplicates()
+        self.papers = [p for p in self.papers if p not in dupes]
+        return self.papers

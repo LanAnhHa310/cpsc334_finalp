@@ -21,7 +21,7 @@ def test_find_duplicates():
 
 def test_find_duplicates_none():
     p = Processor()
-    p.load_papers = ([{"title": "Paper a"}, {"title": "Paper b"}])
+    p.load_papers ([{"title": "Paper a"}, {"title": "Paper b"}])
     assert p.find_duplicates() == []
 
 def test_find_duplicates_empty():

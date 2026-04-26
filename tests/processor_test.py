@@ -28,3 +28,14 @@ def test_find_duplicates_empty():
     p = Processor()
     p.load_papers([])
     assert p.find_duplicates() == []
+
+def test_remove_duplicates():
+    p = Processor()
+    p.load_papers([
+        {"title": "Deep Learning"},
+        {"title": "machine learning"},
+        {"title": "deep learning"} # duplicate   
+    ])
+    result = p.remove_duplicates()
+    assert len(result) == 2
+    assert len(p.papers) == 2 #confirm the update is in place

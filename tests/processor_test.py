@@ -1,4 +1,5 @@
 from library.processor.processor import Processor
+import os
 
 def test_load_papers_success():
     p = Processor()
@@ -39,3 +40,22 @@ def test_remove_duplicates():
     result = p.remove_duplicates()
     assert len(result) == 2
     assert len(p.papers) == 2 #confirm the update is in place
+
+def test_to_csv_success():
+    p = Processor()
+    p.load_papers([{
+        "title": "Deep Learning",
+        "authors": "LeCun",
+        "year": 2015, 
+        "url": None, 
+        "pdf_link": None
+    }])
+    assert p.to_csv("test_output.csv") == True
+    assert os.path.exists("test_output.csv")
+    os.remove("test_output.csv")
+
+def test_to_csv_empty():
+    p = Processor()
+    assert p.to_csv("test_output.csv") == False
+
+    

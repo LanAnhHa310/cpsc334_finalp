@@ -52,9 +52,15 @@ def test_to_csv_success():
     }])
     assert p.to_csv("deep learning") == True
     assert os.path.exists(os.path.join("output", "results", "deep_learning.csv"))
-
 def test_to_csv_empty():
     p = Processor()
     assert p.to_csv("deep learning") == False
 
+def test_filter_by_year():
+    p = Processor()
+    p.load_papers([
+        {"title": "Paper A", "year": 2019},
+        {"title": "Paper B", "year": 2026},
+    ])
+    assert len(p.filter_by_year(2020, 2026)) == 1
     

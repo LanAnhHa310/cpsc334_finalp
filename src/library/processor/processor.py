@@ -58,3 +58,6 @@ class Processor:
         logger.info("to_csv: exported %d papers to %s", len(self.papers), filepath)
         return True
 
+    def filter_by_year(self, start: int, end: int) ->list:
+        self.papers = [p for p in self.papers if start <= (p.get("year") or 0) <= end]
+        return self.papers
